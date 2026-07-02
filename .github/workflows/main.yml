@@ -13,7 +13,7 @@ Jobs:
       
     - name: welcome gretting
       run: |
-        pwd
-        whoami
-        ls
-        nano abc.txt
+       pwd
+       ls
+       nano abc.txt
+      
