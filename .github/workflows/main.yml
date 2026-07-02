@@ -1,0 +1,19 @@
+name: CI CD Pipeline for Github Action Practice
+
+on:
+   workflow_dispatch:
+ 
+Jobs:
+  job1_satyam:
+    name: run to Ubuntu
+    runs-on: ubuntu-22.04
+    Steps:
+    - name: Checkout Step
+      uses: actions/checkout@v4.0.0
+      
+     - name: welcome gretting
+       run: 
+         pwd
+         whoami
+         ls
+         nano abc.txt
