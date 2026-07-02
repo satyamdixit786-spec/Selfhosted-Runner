@@ -15,12 +15,12 @@ jobs:
       - name: Checkout Step
         uses: actions/checkout@v4.0.0
       
-      - name: welcome gretting
-        run: |
-         pwd
-         whoami
-         ls
-         nano abc.txt
+      # - name: welcome gretting
+      #   run: |
+      #    pwd
+      #    whoami
+      #    ls
+      #    nano abc.txt
 
 
 
