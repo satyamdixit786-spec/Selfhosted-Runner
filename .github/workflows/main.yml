@@ -1,5 +1,3 @@
-name: CI CD Pipeline for Github Action Practice
-
 on:
    workflow_dispatch:
  
@@ -12,8 +10,9 @@ Jobs:
       uses: actions/checkout@v4.0.0
       
     - name: welcome gretting
-      run: |
-       pwd
-       ls
-       nano abc.txt
+      run: 
+         pwd
+         whoami
+         ls
+         nano abc.txt
       
