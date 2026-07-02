@@ -1,49 +1,51 @@
+name: Azure Terraform Workflow
+
 on:
   workflow_dispatch:
-  
+
 permissions:
   id-token: write
   contents: read
 
 jobs:
-
   job1_satyam:
-    name: run to Ubuntu
+    name: Run on Ubuntu
     runs-on: ubuntu-22.04
+
     steps:
-       
       - name: Checkout Step
-        uses: actions/checkout@v4.0.0
-      
-      # - name: welcome gretting
-      #   run: |
-      #    pwd
-      #    whoami
-      #    ls
-      #    nano abc.txt
-
-
-
+        uses: actions/checkout@v4
 
   job2:
+    name: Terraform Deployment
     runs-on: ubuntu-latest
+
     steps:
-      - name: Azure login
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Azure Login
         uses: azure/login@v3
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Azure CLI script
+      - name: Azure CLI Script
         uses: azure/cli@v2
         with:
           azcliversion: latest
           inlineScript: |
             az account show
-   
 
-  
- 
+      - name: Install Terraform
+        uses: little-core-labs/install-terraform@v2
+        with:
+          version: 0.13.4
 
-
+      - name: Terraform Init, Validate, Plan & Apply
+        run: |
+          terraform init
+          terraform validate
+          terraform plan
+          terraform apply -auto-approve
